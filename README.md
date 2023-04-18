@@ -26,8 +26,8 @@ Emission and time:
 - `times`: Array of times to compute (days)
 
 # Example of the code in action
-Calling the `maser()` function with the aforementioned inputs returns two arrays. which contain the visibility of emission from the Northern and Southern magnetic hemispheres. Emission being visible is represented with the value `True`, while emission that is either not visible or cannot be generated is represented with the value `False`. See below for an example usage of the code to produce the \`visibility lightcurve' of radio emission from a system.
-```
+Calling the `maser()` function with the aforementioned inputs returns two arrays. which contain the visibility of emission from the Northern (`vis_N`) and Southern (`vis_S`) magnetic hemispheres at each time element in `times`. Visible emission is represented with the value `True`, while emission that is either not visible or cannot be generated is represented with the value `False`. See below for an example usage of the code to produce the \`visibility lightcurve' of radio emission from a system.
+```python
 # Define inputs
 M_s = 0.2
 R_s = 0.3
@@ -50,14 +50,16 @@ vis_N, vis_S = maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0,
 ```
 The visibility lightcurve computed should resemble the following:
 
+![fig](https://user-images.githubusercontent.com/24622499/232755000-d36b8aa1-d747-4c8a-a97c-0249238bb99e.png)
 
 # Compatibility with Numba
-While not necessary to use the code, we recommend that it be used in tandem with [Numba](https://numba.pydata.org/) if the `maser` function has to be called many times. This can be done so by importing Numba at the top of the script, and adding the following decorator above the function definition:
-```
+While not necessary to use the code, we recommend that it be used in tandem with [Numba](https://numba.pydata.org/) if the `maser` function has to be called many times. This can be done so by importing Numba at the top of the script:
+```python
 import numpy as np
 from numba import njit
 ```
-```
+and adding the following decorator above the function definition:
+```python
 @njit('b1[:, :](f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8[:])')
 def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times):
 ```
