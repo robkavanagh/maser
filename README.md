@@ -63,3 +63,6 @@ The `njit` decorator can then be added above the function definition as follows:
 @njit('b1[:, :](f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8[:])')
 def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times):
 ```
+
+# Acknowledging use of the code
+We kindly ask that publications which make use of the MASER code acknowledge the following work: [Kavanagh & Vedantham (2023)]().
