@@ -65,4 +65,4 @@ def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, 
 ```
 
 # Acknowledging use of the code
-We kindly ask that publications which make use of the MASER code acknowledge the following work: [Kavanagh & Vedantham (2023)]().
+We kindly ask that publications which make use of the MASER code cite [Kavanagh & Vedantham (2023)]().
