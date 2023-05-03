@@ -26,7 +26,7 @@ Emission and time:
 - `times`: Array of times to compute (days)
 
 # Example of the code in action
-Calling the `maser()` function with the aforementioned inputs returns two arrays. which contain the visibility of emission from the Northern (`vis_N`) and Southern (`vis_S`) magnetic hemispheres at each time element in `times`. Visible emission is represented with the value `True`, while emission that is either not visible or cannot be generated is represented with the value `False`. See below for an example usage of the code to produce the \`visibility lightcurve' of radio emission from a system.
+Calling the `maser()` function with the aforementioned inputs returns two arrays, which contain the visibility of emission from the Northern (`vis_N`) and Southern (`vis_S`) magnetic hemispheres at each time element in `times`. Visible emission is represented with the value `True`, while emission that is either not visible or cannot be generated is represented with the value `False`. See below for an example usage of the code to produce the \`visibility lightcurve' of radio emission from a system.
 ```python
 # Define inputs
 M_s = 0.2
