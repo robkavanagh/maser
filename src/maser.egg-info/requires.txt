@@ -1,0 +1,6 @@
+numpy
+
+[tests]
+pytest
+pytest-cov
+pytest-remotedata
