@@ -188,4 +188,4 @@ def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, 
 			# Visibility
 			vis[1, j] = (alpha - dalpha / 2 < gamma_S) & (gamma_S < alpha + dalpha / 2)
 
-	return vis
+	return vis*1.0
