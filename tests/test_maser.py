@@ -31,6 +31,8 @@ dalpha = 5 # Emission cone thickness (degrees)
 P_p = 8.4630351 # AU Mic b period (days)
 
 
+times = np.linspace(0, 730, 40000) # Array of observation times to compute (days) - running for 2 years
+
 def test_maser():
     visibility_North, visibility_South = maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times)
 
