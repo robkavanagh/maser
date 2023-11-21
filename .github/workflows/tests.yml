@@ -4,8 +4,8 @@ on: [push]
 
 jobs:
     build:
-      # Job name is test-mundey
-      name: test-ticktack
+      # Job name is test-maser
+      name: test-maser
       # This job runs on Linux
       runs-on: ubuntu-latest
       steps:
@@ -15,7 +15,7 @@ jobs:
         - name: python
           uses: actions/setup-python@v1
           with:
-            python-version: '3.7' # Version range or exact version of a Python version to use, using semvers version range syntax.
+            python-version: '3.11' # Version range or exact version of a Python version to use, using semvers version range syntax.
             architecture: 'x64' # (x64 or x86)
         
         - name: Install dependencies
@@ -25,8 +25,8 @@ jobs:
             pip install -r requirements.txt
               
         - run:
-            python setup.py install
-          name: 'Install ticktack'
+            pip install .
+          name: 'Install maser'
 
         - run: pytest tests/*.py
           name: 'Run pytest'
