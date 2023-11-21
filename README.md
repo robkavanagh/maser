@@ -1,4 +1,9 @@
-# The MASER code
+# MASER
+
+[![integration](https://github.com/ksmithyy/maser/actions/workflows/tests.yml/badge.svg)](https://github.com/ksmithyy/maser/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- [![PyPI version](https://badge.fury.io/py/maser.svg)](https://badge.fury.io/py/maser) -->
+
 The MASER (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) code is a flexible tool written in [Python](https://www.python.org/) (version `3.10.8`) for computing the visibility of polarised radio emission as a function of time from exoplanetary systems. The code computes the geometry relevant for magnetic star-planet interactions in the radio regime on the fly, based on a set of key physical and geometrical properties. While the code was developed with planet-hosting M dwarf systems in mind, it is also well-suited for application to any magnetised host-satellite system (i.e. planet-moon and brown dwarf-satellite systems). The code depends only on [NumPy](https://numpy.org/), and as such can be easily deployed on systems with Python installed. The current version of the code uses NumPy version `1.23.5`. A full description of the code can be found in [Kavanagh & Vedantham (2023)](https://arxiv.org/abs/2307.02555).
 
 # Basic usage
