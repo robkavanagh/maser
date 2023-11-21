@@ -58,17 +58,8 @@ The visibility lightcurve computed should resemble the following:
 
 ![fig](https://user-images.githubusercontent.com/24622499/232755000-d36b8aa1-d747-4c8a-a97c-0249238bb99e.png)
 
-# Compatibility with Numba
-While not necessary to use the code, we recommend that it be used in tandem with [Numba](https://numba.pydata.org/) if the `maser` function has to be called many times. Utilising Numba in \`No Python mode' greatly improves the computation speed, and can be done so by importing the `njit` decorator:
-```python
-import numpy as np
-from numba import njit
-```
-The `njit` decorator can then be added above the function definition as follows:
-```python
-@njit('b1[:, :](f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8, f8[:])')
-def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times):
-```
+# jit compilation with Jax
+The code is automatically just-in-time compiled using Jax for accelerated computation.
 
 # Acknowledging use of the code
 We kindly ask that publications which make use of the MASER code cite [Kavanagh & Vedantham (2023)](https://arxiv.org/abs/2307.02555).
