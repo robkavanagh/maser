@@ -1,6 +1,6 @@
 # MASER
 
-[![integration](https://github.com/ksmithyy/maser/actions/workflows/tests.yml/badge.svg)](https://github.com/ksmithyy/maser/actions/workflows/tests.yml)
+[![integration](https://github.com/KSmithyy/maser/actions/workflows/tests.yml/badge.svg)](https://github.com/KSmithyy/maser/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![arXiv](http://img.shields.io/badge/arXiv-2307.02555-blue.svg?style=flat)](http://arxiv.org/abs/2307.02555)
 <!-- [![PyPI version](https://badge.fury.io/py/maser.svg)](https://badge.fury.io/py/maser) -->
