@@ -1,7 +1,7 @@
 import numpy as np
 import jax.numpy as jnp
 
-from maser import maser 
+from maser import maser, get_a, get_P_p
 
 
 # Defining variables 
@@ -34,6 +34,7 @@ P_p = 8.4630351 # AU Mic b period (days)
 times = np.linspace(0, 730, 40000) # Array of observation times to compute (days) - running for 2 years
 
 def test_maser():
+    # call maser
     visibility_North, visibility_South = maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times)
 
     # check all finite
@@ -45,3 +46,10 @@ def test_maser():
     assert np.isclose(visibility_North.std(),0.17732385) 
     assert visibility_North.sum() == 1300.
     assert np.isclose(visibility_South.std(),0.17712599)
+
+def test_kepler():
+    # make sure kepler's third law inverts correctly
+    a = 10
+    period = get_P_p(a,M_s,R_s)
+    assert np.isfinite(period)
+    assert np.isclose(get_a(period,M_s,R_s),a)
