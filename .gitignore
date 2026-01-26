@@ -1,0 +1,8 @@
+.DS_Store
+.python-version
+.venv/
+build/
+maser.sublime-project
+maser.sublime-workspace
+src/maser/__pycache__
+src/maser.egg-info/

@@ -1,52 +1,12 @@
-# The MASER code for computing the visibility of polarised radio emission induced by a planet on its host star when in a sub-Alfvénic orbit.
-# 
-# See full details in Kavanagh & Vedantham (2023).
-# 
-# Version 1.0
-
 import numpy as np
+from . import constants as c
 
-# Constants
-Msun = 1.989e33
-Rsun = 6.955e10
-G = 6.674e-8
-rad_per_deg = np.pi / 180
-sec_per_day = 86400
+def maser(params, times, Lmax = 100, tol = 1e-2):
 
-# Max loop size (Rstar)
-Lmax = 100
-
-# Tolerance for solver
-tol = 1e-2
-
-# Zero vector
-zero_vec = np.array([0.0, 0.0, 0.0])
-
-# Inputs:
-# - M_s:     Stellar mass (solar masses)
-# - R_s:     Stellar radius (solar radii)
-# - P_s:     Stellar rotation period (days)
-# - i_s:     Stellar inclination (degrees)
-# - B_s:     Dipole field strength at magnetic poles (Gauss)
-# - beta:    Magnetic obliquity (degrees)
-# - phi_s0:  Rotation phase at time zero (0 - 1)
-# - a:       Orbital distance (stellar radii)
-# - i_p:     Orbital inclination (degrees)
-# - lam:     Projected spin-orbit angle (degrees)
-# - phi_p0:  Orbital phase at time zero (0 - 1)
-# - f:       Observing frequency (MHz)
-# - alpha:   Cone opening angle (degrees)
-# - dalpha:  Cone thickness (degrees)
-# - times:   Times to compute the visibility at (days)
-# 
-# The function returns two arrays of boolean values, which infer if emission is visible from the Northern (vis_N) and Southern (vis_S) magnetic hemispheres at each element of the times array.
-
-def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha, times):
+	M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha = params
 
 	# Line of sight axes
-	x = np.array([1, 0, 0])
-	y = np.array([0, 1, 0])
-	z = np.array([0, 0, 1])
+	x, y, z = np.eye(3)
 
 	# Visibility arrays
 	ntimes = len(times)
@@ -56,15 +16,7 @@ def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, 
 	if f > 2.8 * B_s: return vis
 
 	# Planet orbital period (days)
-	P_p = 2 * np.pi * ((a * R_s * Rsun) ** 3 / (G * M_s * Msun)) ** 0.5 / sec_per_day
-
-	# Angles to rad
-	i_s *= rad_per_deg
-	beta *= rad_per_deg
-	i_p *= rad_per_deg
-	lam *= rad_per_deg
-	alpha *= rad_per_deg
-	dalpha *= rad_per_deg
+	P_p = 2 * np.pi * ((a * R_s * c.Rsun) ** 3 / (c.G * M_s * c.Msun)) ** 0.5 / 86400
 
 	# Trig terms
 	sin_i_s = np.sin(i_s)
@@ -126,7 +78,7 @@ def maser(M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, 
 		if ((f > f_max) | (f < f_min)) | ((L > Lmax) & (f_p > f)): continue
 
 		# Magnetic equator
-		if L == np.inf: x_B = zero_vec
+		if L == np.inf: x_B = np.array([0.0, 0.0, 0.0])
 		else: x_B = x_p / sin_theta_p - (cos_theta_p / sin_theta_p) * z_B
 
 
