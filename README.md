@@ -2,14 +2,14 @@
 MASER (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) is a tool for computing the visibility of radio emission produced by magnetic star-planet interactions over time. It calculates the geometry of these interactions on the fly from the relevant system parameters. While it was developed for research on planet-hosting M-dwarfs, it is well suited for application to any magnetised body that can interact with an orbiting satellite (e.g. planets, brown dwarfs, white dwarfs). It is written in Python, and is described in [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K). It can be installed on Unix systems as described below, or alternatively used via its dedicated web app (coming soon).
 
 # Installation
-`maser` can be installed on Unix systems via `pip`:
+MASER can be installed on Unix systems via `pip`:
 ```
 pip install git+https://github.com/robkavanagh/maser.git
 ```
 Its sole dependency is NumPy (>version 1.23).
 
 # Basic usage
-Once installed, you can import `maser` into a Python workflow via:
+Once installed, you can utilise MASER in your Python workflow via:
 ```
 from maser import maser
 ```
@@ -41,7 +41,7 @@ The elements of `params` and their associated units are as follows:
 The script `examples/plot.py` provides an example of using MASER to compute the visibility of radio emission from a star-planet system observed over two days. Calling `maser(params, times)` returns two arrays corresponding to the visibility of the emission from the Northern and Southern magnetic hemispheres of the star at each time in `times`. Visible emission is represented with the value `True`, whereas emission that is either not visible or cannot be generated is represented with the value `False`. The visibility windows of emission from the North and South (coloured red and blue respectively) should resemble the following time series:
 
 <p align="center">
-<img src="examples/fig.pdf" width="80%"/>
+<img src="examples/fig.png" width="80%"/>
 </p>
 
 # Use cases
