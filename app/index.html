@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8" />
+	
+	<title>MASER</title>
+
+	<link rel="icon" type="image/png" href="static/assets/logo.png">
+
+	<link rel="stylesheet" href="static/style.css"/>
+
+</head>
+
+<body>
+
+	<template id="box_template">
+		<div class="box">
+			<div class="box_top">
+				<div class="box_label"></div>
+				<input class="box_input"></input>
+			</div>
+			<div class="box_error"></div>
+		</div>
+	</template>
+
+	<div class="app">
+
+		<section class="left">
+
+			<h2 style="margin-top: 0;">Input parameters:</h2>
+
+			<div class="inputs">
+
+				<h3 style="margin-top: 0;">Star</h3>
+				<div id="stellar_params"></div>
+
+				<h3>Planet</h3>
+				<div id="planet_params"></div>
+
+				<h3>Emission cone</h3>
+				<div id="cone_params"></div>
+
+				<h3>Observations</h3>
+				<div id="obs_params"></div>
+
+			</div>
+
+		</section>
+
+		<section class="right">
+
+			<div class="header">
+			
+				<h1>MASER</h1>
+				
+				A tool for scheduling time series acquisition of radio emission from magnetic interactions between stars and planets. Enter the physical parameters of the system along with your observing schedule and the visibility windows of the signal from the Northern and Southern magnetic hemispheres of the star will be computed. The time series data can be downloaded via the button below the figure.
+
+			</div>
+
+			<div class="results">
+
+				<h1>Visibility windows</h1>
+
+				<div id="error"></div>
+				<img id="figure" src="" alt="">
+				<div style="display: flex; justify-content: center;">
+					<a id="button">Download time series</a>
+				</div>
+			</div>
+
+			<div class="footer">
+				MASER | Rob Kavanagh | 2026
+			</div>
+
+		</section>
+
+	</div>
+
+	<script src="static/inputs.js?v=1.0"></script>
+
+</body>
