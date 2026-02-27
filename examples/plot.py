@@ -39,11 +39,25 @@ times = np.linspace(0, 2, 10000)
 params = M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha
 N, S = maser(params, times)
 
-plt.plot(times, N, color = 'xkcd:light red', lw = 2, label = 'N')
-plt.plot(times, S, color = 'xkcd:sky blue', lw = 2, label = 'S')
-plt.legend(loc = 'lower right', title = 'Hemisphere')
-plt.xlabel('Time (days)')
-plt.ylabel('Signal visible?')
-plt.yticks([0, 1], ['No', 'Yes'])
-plt.tight_layout()
+N = N.astype(int)
+S = S.astype(int)
+
+# Make figure
+fig, (ax_N, ax_S) = plt.subplots(2, sharex = True, figsize = (6, 2))
+
+for ax in [ax_N, ax_S]:
+	ax.set_ylim(0, 1)
+	ax.set_yticks([])
+
+ax_N.set_ylabel('North')
+ax_S.set_ylabel('South')
+ax_S.set_xlabel('Time (days)')
+
+dt = times[1] - times[0]
+edges = np.append(times - 0.5 * dt, times[-1] + 0.5 * dt)
+
+ax_N.stairs(N, edges, ec = None, fc = 'xkcd:salmon', fill = True)
+ax_S.stairs(S, edges, ec = None, fc = 'xkcd:sky blue', fill = True)
+plt.subplots_adjust(left = 0.04, right = 0.98, bottom = 0.25, top = 0.95, hspace = 0.1)
+
 plt.show()
