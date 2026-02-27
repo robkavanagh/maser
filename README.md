@@ -13,9 +13,7 @@ Once installed, you can utilise MASER in your Python workflow via:
 ```
 from maser import maser
 ```
-The function `maser` requires the vector `params`, which contains the system parameters required to compute the visibility of the radio emission generated via the magnetic star-planet interactions, and the NumPy array `times`, which contains the observing times in days. Two optional parameters, `Lmax` and  `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops  and the tolerance of the numerical solver implemented (see the [associated publication](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K) for details).
-
-The elements of `params` and their associated units are as follows:
+The function `maser` requires the vector `params`, which contains the system parameters required to compute the visibility of the radio emission generated via the magnetic star-planet interactions, and the NumPy array `times`, which contains the observing times in days. The elements of `params` and their associated units are as follows:
 
 **Star:**
 - `M_s`: Mass (solar masses)
@@ -36,6 +34,8 @@ The elements of `params` and their associated units are as follows:
 - `f`: Observing frequency (MHz)
 - `alpha`: Cone opening angle (radians)
 - `dalpha`: Cone thickness (radians)
+
+Two optional parameters, `Lmax` and  `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops  and the tolerance of the numerical solver implemented (see the [associated publication](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K) for details).
 
 # Example calculation
 The script `examples/plot.py` provides an example of using MASER to compute the visibility of radio emission from a star-planet system observed over two days. Calling `maser(params, times)` returns two arrays corresponding to the visibility of the emission from the Northern and Southern magnetic hemispheres of the star at each time in `times`. Visible emission is represented with the value `True`, whereas emission that is either not visible or cannot be generated is represented with the value `False`. The visibility windows of emission from the North and South (coloured red and blue respectively) should resemble the following time series:
