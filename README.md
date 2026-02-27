@@ -1,5 +1,5 @@
 # MASER
-MASER (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) is a tool for computing the visibility of radio emission produced by magnetic star-planet interactions over time. It calculates the geometry of these interactions on the fly from the relevant system parameters. While it was developed for research on planet-hosting M-dwarfs, it is well suited for application to any magnetised body that can interact with an orbiting satellite (e.g. planets, brown dwarfs, white dwarfs). It is written in Python, and is described in [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K). It can be installed on Unix systems as described below, or alternatively used via its dedicated web app (coming soon).
+MASER (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) is a tool for computing the visibility of radio emission produced by magnetic star-planet interactions over time. It calculates the geometry of these interactions on the fly from the relevant system parameters. While it was developed for research on planet-hosting M-dwarfs, it is well suited for application to any magnetised body that can interact with an orbiting satellite (e.g. planets, brown dwarfs, white dwarfs). It is written in Python, and is described in [Kavanagh & Vedantham (2023)](https://doi.org/10.1093/mnras/stad2035). It can be installed on Unix systems as described below, or alternatively used via its dedicated web app (coming soon).
 
 # Installation
 MASER can be installed on Unix systems via `pip`:
@@ -35,7 +35,7 @@ The function `maser` requires the vector `params`, which contains the system par
 - `alpha`: Cone opening angle (radians)
 - `dalpha`: Cone thickness (radians)
 
-Two optional parameters, `Lmax` and  `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops  and the tolerance of the numerical solver implemented (see the [associated publication](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K) for details).
+Two optional parameters, `Lmax` and `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops and the tolerance of the numerical solver implemented. For more details, see the [associated publication](https://doi.org/10.1093/mnras/stad2035).
 
 # Example calculation
 The script `examples/plot.py` provides an example of using MASER to compute the visibility of radio emission from a star-planet system observed over two days. Calling `maser(params, times)` returns two arrays corresponding to the visibility of the emission from the Northern and Southern magnetic hemispheres of the star at each time in `times`. Visible emission is represented with the value `True`, whereas emission that is either not visible or cannot be generated is represented with the value `False`. The visibility windows of emission from the North and South (coloured red and blue respectively) should resemble the following time series:
@@ -51,4 +51,4 @@ MASER has been utilised for a variety of science cases. The published use cases 
 
 
 # Acknowledging use of the code
-If you use MASER in your own work, please cite [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K).
+If you use MASER in your own work, please cite [Kavanagh & Vedantham (2023)](https://doi.org/10.1093/mnras/stad2035).
