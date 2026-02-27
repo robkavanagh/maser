@@ -1,20 +1,19 @@
 # MASER
-`maser` (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) is a tool for computing the visibility of radio emission produced by magnetic star-planet interactions over time. It calculates the geometry of these interactions on the fly, based on the relevant system parameters. While it was developed for research on planet-hosting M-dwarfs, it is well suited for application to any magnetised body that can interact with an orbiting satellite (e.g. planets & brown dwarfs). It is written in [Python](https://www.python.org/), and is described in [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K).
+MASER (**M**agnetically inter**A**cting **S**tars and **E**xoplanets in the **R**adio) is a tool for computing the visibility of radio emission produced by magnetic star-planet interactions over time. It calculates the geometry of these interactions on the fly from the relevant system parameters. While it was developed for research on planet-hosting M-dwarfs, it is well suited for application to any magnetised body that can interact with an orbiting satellite (e.g. planets, brown dwarfs, white dwarfs). It is written in Python, and is described in [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K). It can be installed on Unix systems as described below, or alternatively used via its dedicated web app (coming soon).
 
 # Installation
 `maser` can be installed on Unix systems via `pip`:
 ```
 pip install git+https://github.com/robkavanagh/maser.git
 ```
-
 Its sole dependency is NumPy (>version 1.23).
+
 # Basic usage
 Once installed, you can import `maser` into a Python workflow via:
 ```
 from maser import maser
 ```
-
-The function `maser` requires the vector `params`, which contains the system parameters required to compute the visibility of the radio emission generated via the magnetic star-planet interactions, and the NumPy array `times`, which contains the observing times in days. Two optional parameters, `Lmax` and  `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops  and the tolerance of the numerical solver implemented (see [Kavanagh & Vedantham, 2023](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K) for details).
+The function `maser` requires the vector `params`, which contains the system parameters required to compute the visibility of the radio emission generated via the magnetic star-planet interactions, and the NumPy array `times`, which contains the observing times in days. Two optional parameters, `Lmax` and  `tol`, can also be set when calling `maser`, which set the maximum size of the magnetic field loops  and the tolerance of the numerical solver implemented (see the [associated publication](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K) for details).
 
 The elements of `params` and their associated units are as follows:
 
@@ -39,11 +38,17 @@ The elements of `params` and their associated units are as follows:
 - `dalpha`: Cone thickness (radians)
 
 # Example calculation
-The script `examples/plot example.py` contains example code of how to call `maser` for a single star-planet system observed over two days. Calling `maser(params, times)` returns two arrays, which correspond to the visibility of radio emission from the Northern and Southern magnetic hemispheres at each time element in `times`. Visible emission is represented with the value `True`, while emission that is either not visible or cannot be generated is represented with the value `False`. Plotting the computed lightcurves using e.g. [Matplotlib](https://matplotlib.org/) should resemble the following time series (where `vis_N` and `vis_S` are the visibilities of the emission from the Northern/Southern magnetic hemispheres):
+The script `examples/plot.py` provides an example of using MASER to compute the visibility of radio emission from a star-planet system observed over two days. Calling `maser(params, times)` returns two arrays corresponding to the visibility of the emission from the Northern and Southern magnetic hemispheres of the star at each time in `times`. Visible emission is represented with the value `True`, whereas emission that is either not visible or cannot be generated is represented with the value `False`. The visibility windows of emission from the North and South (coloured red and blue respectively) should resemble the following time series:
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/24622499/232755000-d36b8aa1-d747-4c8a-a97c-0249238bb99e.png" width="80%"/>
+<img src="examples/fig.pdf" width="80%"/>
 </p>
 
+# Use cases
+MASER has been utilised for a variety of science cases. The published use cases as of Feb 2026 are as follows:
+- Assessing the geometric dependence of pulse durations from long period radio transients [(Zhong & Most 2025)](https://doi.org/10.48550/arXiv.2509.09057)
+- Interpreting the non-detection of magnetic star-planet interactions [(Peña-Moñino et al. 2025)](https://doi.org/10.1051/0004-6361/202451835)
+
+
 # Acknowledging use of the code
-If you use `maser` in your own work, please cite [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K).
+If you use MASER in your own work, please cite [Kavanagh & Vedantham (2023)](https://ui.adsabs.harvard.edu/abs/2023MNRAS.524.6267K).
