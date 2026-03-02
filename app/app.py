@@ -5,7 +5,7 @@ from matplotlib.dates import drange, DateFormatter, AutoDateLocator
 import datetime
 from maser import maser
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, StreamingResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 import io
 import csv
@@ -13,7 +13,7 @@ import base64
 
 matplotlib.use('Agg')
 
-plt.style.use('static/style.mplstyle')
+plt.style.use('frontend/style.mplstyle')
 
 rad_per_deg = np.pi / 180
 t_ref_1970 = 2440587.5
@@ -54,10 +54,10 @@ app = FastAPI()
 # Serve index.html
 @app.get('/', response_class = FileResponse)
 def read_html():
-	return FileResponse('index.html')
+	return FileResponse('frontend/index.html')
 
 # Serve static files
-app.mount('/static', StaticFiles(directory = 'static'))
+app.mount('/frontend', StaticFiles(directory = 'frontend'), name = 'frontend')
 
 @app.post('/run_maser')
 async def run_maser(request: Request):
