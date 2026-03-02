@@ -1,4 +1,4 @@
 ..
 numpy
 matplotlib
-fastapi\[standard\]
+fastapi[standard]
