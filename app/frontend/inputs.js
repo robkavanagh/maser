@@ -54,7 +54,7 @@ for (const group in initial_params)
 // Manage updates to input parameters
 // ######################################################
 
-const url = "http://127.0.0.1:8000/run_maser";
+const url = `${window.location.origin}/run_maser`;
 
 const figure = document.getElementById("figure");
 const button = document.getElementById("button");
