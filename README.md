@@ -47,8 +47,8 @@ The script `examples/plot.py` provides an example of using MASER to compute the 
 </p>
 
 # Use cases
-MASER has been utilised for a variety of science cases. The published use cases as of Feb 2026 are as follows:
-- Assessing the geometric dependence of pulse durations from long period radio transients [(Zhong & Most 2025)](https://doi.org/10.48550/arXiv.2509.09057)
+MASER has been utilised for a variety of science cases. The published use cases as of March 2026 are as follows:
+- Assessing the geometric dependence of pulse durations from long period radio transients [(Zhong & Most 2026)](https://doi.org/10.3847/2041-8213/ae4337)
 - Interpreting the non-detection of magnetic star-planet interactions [(Peña-Moñino et al. 2025)](https://doi.org/10.1051/0004-6361/202451835)
 
 # Acknowledging use of the code
