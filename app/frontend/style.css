@@ -10,6 +10,8 @@
 
 :root {
 	--padding: 30px;
+	--margin-desktop: 60px;
+	--margin-mobile: 20px;
 	--corner-radius: 1rem;
 	--button-color: #2121214b;
 	--highlight-color: rgb(178, 255, 252);
@@ -30,9 +32,9 @@ html, body {
 }
 
 .app {
-	width: calc(100% - 120px);
-	margin: 60px auto 0;
-	height: calc(100vh - 120px);
+	width: calc(100% - 2 * var(--margin-desktop));
+	margin: var(--margin-desktop) auto 0;
+	height: calc(100vh - 2 * var(--margin-desktop));
 	min-height: 500px;
 	background-color: #0000002a;
 	backdrop-filter: blur(20px);
@@ -122,9 +124,9 @@ h3 {
 }
 
 .footer {
-	width: calc(100% - 120px);
+	width: calc(100% - 2 * var(--margin-desktop));
 	margin: 0 auto;
-	height: 60px;
+	height: var(--margin-desktop);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -237,7 +239,8 @@ h3 {
 @media (max-width: 900px), (pointer: coarse) {
 	
 	.app {
-		width: calc(100% - 120px);
+		width: calc(100% - 2 * var(--margin-mobile));
+		margin: var(--margin-mobile) auto 0;
 		height: auto;
 		min-height: unset;
 		grid-template-areas:
@@ -248,9 +251,15 @@ h3 {
 		grid-template-rows: auto auto auto;
 	}
 
+	.footer {
+		width: calc(100% - 2 * var(--margin-mobile));
+		height: var(--margin-mobile);
+	}
+
 	.header {
 		padding: var(--padding);
 		padding-bottom: 0;
+		font-size: 10pt;
 	}
 
 	.results {
