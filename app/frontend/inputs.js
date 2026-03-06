@@ -63,15 +63,26 @@ const error = document.getElementById("error");
 // Function to send inputs to backend
 async function send_current_params()
 {
+	// Show loading indicator
+	error.textContent = "Computing...";
+	error.style.color = "white";
+	figure.style.opacity = "0.3";
+	button.style.opacity = "0.3";
+	button.style.pointerEvents = "none";
+
 	// Send current parameters to backend
 	const response = await fetch(url, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(current_params)});
 
 	// Get image and lightcurve csv
 	const data = await response.json();
 
-	// Clear previous error
+	// Clear loading indicator
 	error.textContent = "";
-	
+	error.style.color = "";
+	figure.style.opacity = "1";
+	button.style.opacity = "1";
+	button.style.pointerEvents = "";
+
 	// Update figure
 	figure.src = "data:image/png;base64," + data.fig;
 	

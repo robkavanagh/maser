@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.dates import drange, DateFormatter, AutoDateLocator
 import datetime
 from maser import maser
@@ -14,6 +15,8 @@ import base64
 matplotlib.use('Agg')
 
 plt.style.use('frontend/style.mplstyle')
+font_manager.fontManager.addfont('frontend/assets/Montserrat-Medium.ttf')
+plt.rcParams['font.family'] = 'Montserrat'
 
 rad_per_deg = np.pi / 180
 t_ref_1970 = 2440587.5

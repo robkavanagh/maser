@@ -4,10 +4,12 @@
 <head>
 
 	<meta charset="UTF-8" />
-	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 	<title>MASER</title>
 
-	<link rel="icon" type="image/png" href="frontend/assets/logo.png">
+	<link rel="icon" type="image/png" href="frontend/assets/MASER logo.svg">
 
 	<link rel="stylesheet" href="frontend/style.css"/>
 
@@ -26,57 +28,54 @@
 	</template>
 
 	<div class="app">
+		
+		<div class="header">
 
-		<section class="left">
-
-			<h2 style="margin-top: 0;">Input parameters:</h2>
-
-			<div class="inputs">
-
-				<h3 style="margin-top: 0;">Star</h3>
-				<div id="stellar_params"></div>
-
-				<h3>Planet</h3>
-				<div id="planet_params"></div>
-
-				<h3>Emission cone</h3>
-				<div id="cone_params"></div>
-
-				<h3>Observations</h3>
-				<div id="obs_params"></div>
-
-			</div>
-
-		</section>
-
-		<section class="right">
-
-			<div class="header">
-			
-				<h1>MASER</h1>
+			<h1>MASER</h1>
 				
-				A tool for scheduling time series acquisition of radio emission from magnetic interactions between stars and planets. Enter the physical parameters of the system along with your observing schedule and the visibility windows of the signal from the Northern and Southern magnetic hemispheres of the star will be computed. The time series data can be downloaded via the button below the figure.
+			A tool for scheduling time series acquisition of radio emission from magnetic interactions between stars and planets. Enter the physical parameters of the system along with your observing schedule and the visibility windows of the signal from the Northern and Southern magnetic hemispheres of the star will be displayed. The time series data shown in the figure can also be downloaded via the button below. For more details, see the <a class="link" href="https://github.com/robkavanagh/maser" target="_blank">MASER repository</a> on GitHub.
 
-			</div>
+		</div>
+	
+		<div class="inputs">
+			
+			<h2>Input parameters</h2>
 
-			<div class="results">
+				<div class="boxes">
 
-				<h1>Visibility windows</h1>
+					<h3 style="margin-top: 0;">Star</h3>
+					<div id="stellar_params"></div>
 
-				<div id="error"></div>
-				<img id="figure" src="" alt="">
-				<div style="display: flex; justify-content: center;">
-					<a id="button">Download time series</a>
+					<h3>Planet</h3>
+					<div id="planet_params"></div>
+
+					<h3>Emission cone</h3>
+					<div id="cone_params"></div>
+
+					<h3>Observations</h3>
+					<div id="obs_params"></div>
+
 				</div>
+
+		</div>
+
+		<div class="results">
+
+			<h2>Visibility windows</h2>
+
+			<div class="results_content">
+				<div id="error"></div>
+				<div class="figure_container">
+					<img id="figure" src="" alt="">
+				</div>
+				<a id="button">Download time series</a>
 			</div>
 
-			<div class="footer">
-				MASER | Rob Kavanagh | 2026
-			</div>
-
-		</section>
+		</div>
 
 	</div>
+
+	<footer class="footer"> MASER | &copy; Rob Kavanagh | 2026 </footer>
 
 	<script src="frontend/inputs.js?v=1.0"></script>
 

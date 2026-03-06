@@ -46,7 +46,7 @@ Two optional parameters `Lmax` and  `tol` can also be set when calling `maser`, 
 Calling `maser(params, times)` returns two arrays, corresponding to the visibility of the emission from the Northern and Southern magnetic hemispheres of the star at each time in `times` (see sketch above). Visible emission is represented with the value `True`, whereas emission that is either not visible or cannot be generated is represented with the value `False`. The script `examples/plot.py` provides an example of using MASER to compute the visibility of radio emission from a star-planet system observed over two days. Plotting the computed time series should resemble the following figure, which shows the visibility windows of the emission from the North and South (coloured red and blue respectively):
 
 <p align="center">
-<img src="examples/fig.png" width="100%"/>
+<img src="examples/fig.png" width="80%"/>
 </p>
 
 # Use cases
