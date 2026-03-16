@@ -9,9 +9,9 @@
 
 	<title>MASER</title>
 
-	<link rel="icon" type="image/png" href="frontend/assets/MASER logo.svg">
+	<link rel="icon" type="image/svg+xml" href="/assets/MASER logo.svg">
 
-	<link rel="stylesheet" href="frontend/style.css"/>
+	<link rel="stylesheet" href="style.css"/>
 
 </head>
 
@@ -21,7 +21,7 @@
 		<div class="box">
 			<div class="box_top">
 				<div class="box_label"></div>
-				<input class="box_input"></input>
+				<input class="box_input">
 			</div>
 			<div class="box_error"></div>
 		</div>
@@ -44,7 +44,7 @@
 				<div class="boxes">
 
 					<h3 style="margin-top: 0;">Star</h3>
-					<div id="stellar_params"></div>
+					<div id="star_params"></div>
 
 					<h3>Planet</h3>
 					<div id="planet_params"></div>
@@ -63,8 +63,9 @@
 
 			<h2>Visibility windows</h2>
 
-			<div class="results_content">
-				<div id="error"></div>
+			<div class="results_container">
+				<div id="results_info"></div>
+				<div id="results_error"></div>
 				<div class="figure_container">
 					<img id="figure" src="" alt="">
 				</div>
@@ -77,6 +78,6 @@
 
 	<footer class="footer"> MASER | &copy; Rob Kavanagh | 2026 </footer>
 
-	<script src="frontend/inputs.js?v=1.0"></script>
+	<script src="inputs.js?v=1.0"></script>
 
 </body>

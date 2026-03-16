@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "maser"
 version = "1.1"
 requires-python = ">=3.11"
-dependencies = ["numpy>=1.23"]
+dependencies = ["numpy>=2.4.2,<3"]
 authors = [{name = "Rob Kavanagh"}]
 license = "MIT"
 license-files = ["LICENSE"]

@@ -1,6 +1,8 @@
 import numpy as np
 from . import constants as c
 
+zero_vec = np.array([0.0, 0.0, 0.0])
+
 def maser(params, times, Lmax = 100, tol = 1e-2):
 
 	M_s, R_s, P_s, i_s, B_s, beta, phi_s0, a, i_p, lam, phi_p0, f, alpha, dalpha = params
@@ -16,7 +18,7 @@ def maser(params, times, Lmax = 100, tol = 1e-2):
 	if f > 2.8 * B_s: return vis
 
 	# Planet orbital period (days)
-	P_p = 2 * np.pi * ((a * R_s * c.Rsun) ** 3 / (c.G * M_s * c.Msun)) ** 0.5 / 86400
+	P_p = 2 * np.pi * ((a * R_s * c.Rsun) ** 3 / (c.G * M_s * c.Msun)) ** 0.5 / c.sec_per_day
 
 	# Trig terms
 	sin_i_s = np.sin(i_s)
@@ -78,8 +80,8 @@ def maser(params, times, Lmax = 100, tol = 1e-2):
 		if ((f > f_max) | (f < f_min)) | ((L > Lmax) & (f_p > f)): continue
 
 		# Magnetic equator
-		if L == np.inf: x_B = np.array([0.0, 0.0, 0.0])
-		else: x_B = x_p / sin_theta_p - (cos_theta_p / sin_theta_p) * z_B
+		if L == np.inf: x_B = zero_vec
+		else: x_B = (x_p - cos_theta_p * z_B) / sin_theta_p
 
 
 		##################################################
@@ -109,12 +111,13 @@ def maser(params, times, Lmax = 100, tol = 1e-2):
 		##################################################
 
 		# Compute latitude of emission point in Northern hemisphere
-		sin_theta_f = (r_f / L) ** 0.5
+		sin_theta_f = min((r_f / L) ** 0.5, 1.0)		# Clamp to keep r_f < L if tol not high enough
 		cos_theta_f = (1 - sin_theta_f ** 2) ** 0.5
 
 		# Cone components in Northern hemisphere in terms of x_B and z_B
-		c_x = 3 * sin_theta_f * cos_theta_f / (1 + 3 * cos_theta_f ** 2) ** 0.5
-		c_z = (3 * cos_theta_f ** 2 - 1) / (1 + 3 * cos_theta_f ** 2) ** 0.5
+		denom = (1 + 3 * cos_theta_f ** 2) ** 0.5
+		c_x = 3 * sin_theta_f * cos_theta_f / denom
+		c_z = (3 * cos_theta_f ** 2 - 1) / denom
 
 		# Check if emission generated in Northern hemisphere
 		if ((cos_theta_p >= 0) & (f > f_p)) | ((cos_theta_p < 0) & (L < Lmax)):
