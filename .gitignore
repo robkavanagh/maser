@@ -1,8 +1,0 @@
-.DS_Store
-.venv
-.vscode
-__pycache__
-build
-src/maser.egg-info
-TO DO.txt
-app old/
