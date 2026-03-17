@@ -85,6 +85,7 @@ h3 {
 
 .inputs, .results {
 	padding: var(--padding-desktop);
+	padding-top: calc(var(--padding-desktop) / 2);
 	display: flex;
 	flex-direction: column;
 	min-height: 0;
