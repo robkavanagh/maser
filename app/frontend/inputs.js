@@ -9,17 +9,25 @@
 
 	// Get initial values from backend
 	const {values, labels} = await (await fetch('/send_initial_values')).json();
-
+	
 	// Function to send inputs for validation in backend
 	async function send_current_params(values)
 	{
+		const this_calc = ++calc_id;
+
 		const validation = await fetch('/validate_inputs', {
 			method: "POST", 
 			headers: {"Content-Type": "application/json"}, 
 			body: JSON.stringify(values)
 		});
 
-		// Valid inputs
+		// Check details of validation
+		const validation_data = await validation.json();
+
+		// Skip if new calculation has started
+		if (calc_id !== this_calc) return;
+
+		// Valid inputs - run maser
 		if (validation.ok){
 
 			// Clear previous error messages
@@ -38,29 +46,41 @@
 				headers: {"Content-Type": "application/json"},
 				body: JSON.stringify(values)
 			});
-			
+
+			// Skip if new calculation has started
+			if (calc_id !== this_calc) return;
+
 			const data = await result.json();
-
-			// Update figure
-			figure.src = "data:image/png;base64," + data.fig;
-
-			if (figure.style.visibility === "hidden"){
-				figure.style.visibility = "visible";
-			}
-			
-			// Update button
-			button.href = "data:text/csv;base64," + data.csv;
-			button.download = "MASER time series.csv";
-
-			if (button.style.visibility === "hidden"){
-				button.style.visibility = "visible";
-			}
 
 			// Clear loading indicator
 			results_info.textContent = "";
 			figure.style.opacity = "1";
 			button.style.opacity = "1";
 			button.style.pointerEvents = "";
+
+			// Show results
+			if (result.ok){
+
+				figure.src = "data:image/png;base64," + data.fig;
+
+				if (figure.style.visibility === "hidden"){
+					figure.style.visibility = "visible";
+				}
+
+				button.href = "data:text/csv;base64," + data.csv;
+				button.download = "MASER time series.csv";
+				
+				if (button.style.visibility === "hidden"){
+					button.style.visibility = "visible";
+				}
+			}
+
+			// Too many data points
+			else {
+				results_error.textContent = data.detail;
+				figure.style.visibility = "hidden";
+				button.style.visibility = "hidden";
+			}
 		}
 
 		// Invalid input(s)
@@ -73,9 +93,7 @@
 			figure.style.visibility = "hidden";
 			button.style.visibility = "hidden";
 
-			const response = await validation.json();
-
-			for (const error of response.detail){
+			for (const error of validation_data.detail){
 
 				const key = error.loc[error.loc.length - 1];
 
@@ -88,7 +106,7 @@
 				}
 
 				else {
-					document.getElementById(key + "_error").textContent = error.msg;
+					document.getElementById(key + "_error").textContent = "- " + error.msg;
 				}
 			}
 		}
@@ -97,6 +115,7 @@
 	// Initialise current values
 	let current_values = values;
 	let input_error_ids = {};
+	let calc_id = 0;
 
 	// Function to clear input errors
 	function clear_input_errors()

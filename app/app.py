@@ -28,7 +28,7 @@ plt.rcParams['font.family'] = 'Montserrat'
 # Constants
 rad_per_deg = np.pi / 180
 t_1970 = 2440587.5			# JD of 1970-01-01 00:00 UTC
-npts_warning = 100000		# Max number of data points allowed
+npts_max = int(1e5)			# Max number of data points allowed
 
 # Time series header string
 time_series_header = Path('csv_header.txt').read_text()
@@ -144,6 +144,10 @@ def run_maser(data: params):
 	# Times relative to 1970-01-01 00:00 (in days)
 	t0 = datetime.strptime(obs.epoch + ' ' + obs.t_start, '%Y-%m-%d %H:%M')
 	times = drange(t0, t0 + timedelta(hours = obs.duration), timedelta(seconds = obs.dt))
+
+	# Prevents overloading the server resources
+	if len(times) > npts_max:
+		return JSONResponse(status_code = 400, content = {'detail': '- Over %d data points. Decrease duration or increase resolution.'%npts_max})
 
 	# Compute lightcurve
 	times_maser = times - obs.t_ref + t_1970 		# Time in MASER frame
